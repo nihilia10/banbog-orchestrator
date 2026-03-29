@@ -1,0 +1,56 @@
+--- ROUTER AGENT ---
+Question: qué es breb?...
+Total Tokens: 344
+Prompt Tokens: 264
+Completion Tokens: 80
+Total Cost (USD): $0.000234
+
+--- RAG AGENT (bre-b) ---
+Question: qué es breb?...
+Total Tokens: 1222
+Prompt Tokens: 1180
+Completion Tokens: 42
+Total Cost (USD): $0.000135
+
+--- ROUTER AGENT ---
+Question: quiero comprar un carro y no tengo la plata. qué m...
+Total Tokens: 357
+Prompt Tokens: 275
+Completion Tokens: 82
+Total Cost (USD): $0.000241
+
+--- RAG AGENT (products) ---
+Question: quiero comprar un carro y no tengo la plata. qué m...
+Total Tokens: 888
+Prompt Tokens: 825
+Completion Tokens: 63
+Total Cost (USD): $0.000108
+
+--- ROUTER AGENT ---
+Question: qué se sabe de la sucursal del banco en El Poblado...
+Total Tokens: 337
+Prompt Tokens: 274
+Completion Tokens: 63
+Total Cost (USD): $0.000210
+
+--- SQL AGENT ---
+Question: qué se sabe de la sucursal del banco en El Poblado...
+Total Tokens: 1635
+Prompt Tokens: 1560
+Completion Tokens: 75
+Total Cost (USD): $0.000744
+
+--- ROUTER AGENT ---
+Question: qué se sabe de la sucursal del banco en El Poblado...
+Total Tokens: 341
+Prompt Tokens: 274
+Completion Tokens: 67
+Total Cost (USD): $0.000054
+
+--- RAG AGENT (products) ---
+Question: qué se sabe de la sucursal del banco en El Poblado...
+Total Tokens: 677
+Prompt Tokens: 656
+Completion Tokens: 21
+Total Cost (USD): $0.000074
+

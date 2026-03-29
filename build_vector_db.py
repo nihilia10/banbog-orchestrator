@@ -55,17 +55,19 @@ def build_faiss_and_sample():
     print("\n" + "="*50)
     print("SAMPLE - DOCUMENTS STORED IN THE VECTOR STORE")
     print("="*50)
-    query = "requisitos o problemas financieros con productos bancarios"
+    query = "dame información sobre un Crédito de Libre Inversión"
     print(f"Example similarity search for: '{query}'\n")
     
     try:
-        results = vectorstore.similarity_search(query, k=3)
-        for i, res in enumerate(results):
+        results = vectorstore.similarity_search_with_score(query, k=3)
+        for i, (doc, score) in enumerate(results):
             print(f"--- Returned Document #{i+1} ---")
-            print(f"Tag          : {res.metadata.get('source_tag')}")
-            print(f"Metadata     : {res.metadata}")
-            clean_content = res.page_content.replace('\n', ' ')
-            print(f"Content      : {clean_content[:250]}...\n")
+            print(f"Tag              : {doc.metadata.get('source_tag')}")
+            print(f"Metadata         : {doc.metadata}")
+            clean_content = doc.page_content.replace('\n', ' ')
+            print(f"Content          : {clean_content[:250]}...")
+            print(f"Similarity Score : {score:.4f}\n")
+
     except Exception as e:
         print(f"Error running the sample: {e}")
 
