@@ -1,0 +1,23 @@
+# Core
+langchain>=0.2.12
+langchain-community>=0.2.10
+langchain-openai>=0.1.20
+
+# Vector DB
+faiss-cpu==1.8.0
+
+# PDF parsing
+pypdf==4.2.0
+
+# Text splitting
+tiktoken==0.7.0
+
+# OpenAI
+openai>=1.40.0
+
+# Utils
+numpy==1.26.4
+
+# Data processing
+pandas>=2.2.2
+openpyxl>=3.1.2
