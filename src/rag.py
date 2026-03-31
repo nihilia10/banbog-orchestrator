@@ -147,14 +147,22 @@ class RAGAgent:
                 {"role": "user", "content": prompt}
             ])
 
-            # Log tokens to file
-            with open("token_usage.txt", "a") as f:
-                f.write(f"--- RAG AGENT ({source_tag}) ---\n")
-                f.write(f"Question: {question[:50]}...\n")
-                f.write(f"Total Tokens: {cb.total_tokens}\n")
-                f.write(f"Prompt Tokens: {cb.prompt_tokens}\n")
-                f.write(f"Completion Tokens: {cb.completion_tokens}\n")
-                f.write(f"Total Cost (USD): ${cb.total_cost:.6f}\n\n")
+            # Log tokens (try file, fallback to console if read-only)
+            try:
+                with open("token_usage.txt", "a") as f:
+                    f.write(f"--- RAG AGENT ({source_tag}) ---\n")
+                    f.write(f"Question: {question[:50]}...\n")
+                    f.write(f"Total Tokens: {cb.total_tokens}\n")
+                    f.write(f"Prompt Tokens: {cb.prompt_tokens}\n")
+                    f.write(f"Completion Tokens: {cb.completion_tokens}\n")
+                    f.write(f"Total Cost (USD): ${cb.total_cost:.6f}\n\n")
+            except (IOError, OSError):
+                print(f"--- RAG AGENT ({source_tag}) ---")
+                print(f"Question: {question[:50]}...")
+                print(f"Total Tokens: {cb.total_tokens}")
+                print(f"Prompt Tokens: {cb.prompt_tokens}")
+                print(f"Completion Tokens: {cb.completion_tokens}")
+                print(f"Total Cost (USD): ${cb.total_cost:.6f}")
 
         return response.content
 

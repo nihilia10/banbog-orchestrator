@@ -137,14 +137,22 @@ class SQLAgent:
             with get_openai_callback() as cb:
                 response = self.agent_executor.invoke({"input": question})
                 
-                # Log tokens to file
-                with open("token_usage.txt", "a") as f:
-                    f.write(f"--- SQL AGENT ---\n")
-                    f.write(f"Question: {question[:50]}...\n")
-                    f.write(f"Total Tokens: {cb.total_tokens}\n")
-                    f.write(f"Prompt Tokens: {cb.prompt_tokens}\n")
-                    f.write(f"Completion Tokens: {cb.completion_tokens}\n")
-                    f.write(f"Total Cost (USD): ${cb.total_cost:.6f}\n\n")
+                # Log tokens (try file, fallback to console if read-only)
+                try:
+                    with open("token_usage.txt", "a") as f:
+                        f.write(f"--- SQL AGENT ---\n")
+                        f.write(f"Question: {question[:50]}...\n")
+                        f.write(f"Total Tokens: {cb.total_tokens}\n")
+                        f.write(f"Prompt Tokens: {cb.prompt_tokens}\n")
+                        f.write(f"Completion Tokens: {cb.completion_tokens}\n")
+                        f.write(f"Total Cost (USD): ${cb.total_cost:.6f}\n\n")
+                except (IOError, OSError):
+                    print(f"--- SQL AGENT ---")
+                    print(f"Question: {question[:50]}...")
+                    print(f"Total Tokens: {cb.total_tokens}")
+                    print(f"Prompt Tokens: {cb.prompt_tokens}")
+                    print(f"Completion Tokens: {cb.completion_tokens}")
+                    print(f"Total Cost (USD): ${cb.total_cost:.6f}")
 
             return response["output"]
         except Exception as e:
