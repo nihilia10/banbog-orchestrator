@@ -11,9 +11,11 @@ env.bak/
 venv.bak/
 .env
 db.sqlite3
-*.db
-faiss_index/
-vector_dataset.csv
+
+# Data (Uncomment to include in deployment)
+# *.db
+# faiss_index/
+# vector_dataset.csv
 
 # Next.js
 frontend/node_modules/
