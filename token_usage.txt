@@ -684,3 +684,24 @@ Prompt Tokens: 856
 Completion Tokens: 62
 Total Cost (USD): $0.000110
 
+--- ROUTER AGENT ---
+Question: qué es breb?...
+Total Tokens: 1061
+Prompt Tokens: 1027
+Completion Tokens: 34
+Total Cost (USD): $0.000116
+
+--- RAG AGENT (bre-b) ---
+Question: qué es breb?...
+Total Tokens: 1043
+Prompt Tokens: 1002
+Completion Tokens: 41
+Total Cost (USD): $0.000117
+
+--- ROUTER AGENT ---
+Question: qué esa breb...
+Total Tokens: 1067
+Prompt Tokens: 1026
+Completion Tokens: 41
+Total Cost (USD): $0.000119
+
