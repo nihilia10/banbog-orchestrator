@@ -15,7 +15,12 @@ load_dotenv()
 # Constants
 # ---------------------------------------------------------------------------
 EXCEL_FILE = "bank_reviews_colombia (1).xlsx"
+if not os.path.exists(EXCEL_FILE) and os.path.exists(os.path.join("..", EXCEL_FILE)):
+    EXCEL_FILE = os.path.join("..", EXCEL_FILE)
+
 DB_FILE = "bank_reviews.db"
+if not os.path.exists(DB_FILE) and os.path.exists(os.path.join("..", DB_FILE)):
+    DB_FILE = os.path.join("..", DB_FILE)
 TABLE_NAME = "reviews"
 LLM_MODEL = "gpt-4.1-mini"
 DATA_DICTIONARY = """

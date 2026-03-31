@@ -1,4 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 .env
-env
-faiss_index
+db.sqlite3
+*.db
+faiss_index/
 vector_dataset.csv
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.vercel/
+frontend/*.log
+frontend/.DS_Store
+frontend/.env*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo

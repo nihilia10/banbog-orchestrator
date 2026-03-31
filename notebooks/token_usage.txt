@@ -1,0 +1,42 @@
+--- ROUTER AGENT ---
+Question: ¿Cuáles son los beneficios de la tarjeta de crédit...
+Total Tokens: 353
+Prompt Tokens: 271
+Completion Tokens: 82
+Total Cost (USD): $0.000060
+
+--- RAG AGENT (products) ---
+Question: ¿Cuáles son los beneficios de la tarjeta de crédit...
+Total Tokens: 908
+Prompt Tokens: 846
+Completion Tokens: 62
+Total Cost (USD): $0.000109
+
+--- ROUTER AGENT ---
+Question: ¿Quién es el usuario que más reseñas ha realizado?...
+Total Tokens: 331
+Prompt Tokens: 271
+Completion Tokens: 60
+Total Cost (USD): $0.000051
+
+--- SQL AGENT ---
+Question: ¿Quién es el usuario que más reseñas ha realizado?...
+Total Tokens: 2771
+Prompt Tokens: 2642
+Completion Tokens: 129
+Total Cost (USD): $0.001263
+
+--- ROUTER AGENT ---
+Question: ¿Qué es el sistema BRE-B?...
+Total Tokens: 333
+Prompt Tokens: 267
+Completion Tokens: 66
+Total Cost (USD): $0.000053
+
+--- RAG AGENT (bre-b) ---
+Question: ¿Qué es el sistema BRE-B?...
+Total Tokens: 1243
+Prompt Tokens: 1181
+Completion Tokens: 62
+Total Cost (USD): $0.000143
+

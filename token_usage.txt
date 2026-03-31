@@ -54,3 +54,59 @@ Prompt Tokens: 656
 Completion Tokens: 21
 Total Cost (USD): $0.000074
 
+--- ROUTER AGENT ---
+Question: qué es breb?...
+Total Tokens: 337
+Prompt Tokens: 264
+Completion Tokens: 73
+Total Cost (USD): $0.000056
+
+--- RAG AGENT (bre-b) ---
+Question: qué es breb?...
+Total Tokens: 1224
+Prompt Tokens: 1180
+Completion Tokens: 44
+Total Cost (USD): $0.000136
+
+--- ROUTER AGENT ---
+Question: cuál es el producto más barato?...
+Total Tokens: 344
+Prompt Tokens: 266
+Completion Tokens: 78
+Total Cost (USD): $0.000058
+
+--- RAG AGENT (products) ---
+Question: cuál es el producto más barato?...
+Total Tokens: 824
+Prompt Tokens: 776
+Completion Tokens: 48
+Total Cost (USD): $0.000097
+
+--- ROUTER AGENT ---
+Question: cuál es el usuario qué más veces ha comentado las ...
+Total Tokens: 333
+Prompt Tokens: 273
+Completion Tokens: 60
+Total Cost (USD): $0.000051
+
+--- SQL AGENT ---
+Question: cuál es el usuario qué más veces ha comentado las ...
+Total Tokens: 2808
+Prompt Tokens: 2651
+Completion Tokens: 157
+Total Cost (USD): $0.001312
+
+--- ROUTER AGENT ---
+Question: qué dicen las reseñas sobre la sucursal del poblad...
+Total Tokens: 347
+Prompt Tokens: 272
+Completion Tokens: 75
+Total Cost (USD): $0.000057
+
+--- RAG AGENT (reviews) ---
+Question: qué dicen las reseñas sobre la sucursal del poblad...
+Total Tokens: 1008
+Prompt Tokens: 986
+Completion Tokens: 22
+Total Cost (USD): $0.000107
+

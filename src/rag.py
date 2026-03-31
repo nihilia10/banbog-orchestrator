@@ -22,6 +22,8 @@ from langchain_community.callbacks import get_openai_callback
 # ---------------------------------------------------------------------------
 
 FAISS_INDEX_PATH     = "faiss_index"
+if not os.path.exists(FAISS_INDEX_PATH) and os.path.exists(os.path.join("..", FAISS_INDEX_PATH)):
+    FAISS_INDEX_PATH = os.path.join("..", FAISS_INDEX_PATH)
 EMBEDDING_MODEL      = "text-embedding-3-small"
 LLM_MODEL            = "gpt-4.1-nano"
 DEFAULT_K            = 5
@@ -95,7 +97,7 @@ class RAGAgent:
         """
         Retrieves top-k candidates, filters by threshold, and returns formatted context.
         """
-        search_kwargs = {"k": k}
+        search_kwargs: dict = {"k": k}
         if source_tag:
             search_kwargs["filter"] = {"source_tag": source_tag}
 

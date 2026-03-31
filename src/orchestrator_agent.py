@@ -13,9 +13,9 @@ Workflow:
 
 import os
 from langchain_core.runnables import RunnableLambda
-from router_agent import RouterAgent
-from llm import RAGAgent
-from sql_agent import SQLAgent
+from src.router_agent import RouterAgent
+from src.rag import RAGAgent
+from src.sql_agent import SQLAgent
 
 def create_orchestrator():
     """
