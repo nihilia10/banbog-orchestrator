@@ -76,14 +76,43 @@ class SQLAgent:
         
         # Prompt personalizado para guiar al agente con conocimiento de la estructura
         custom_suffix = f"""
-        {self.data_dictionary}
+            {self.data_dictionary}
 
-        INSTRUCCIONES CRÍTICAS:
-        - Si el usuario pregunta por 'usuarios', 'sucursales' o 'comentarios', busca siempre en la tabla 'reviews'.
-        - La tabla 'reviews' es la única fuente de datos. No intentes buscar en tablas como 'users' o 'branches'.
-        - La columna 'comment' contiene lenguaje natural; usa LIKE o filtros de texto para búsquedas semánticas.
-        - Para saber quién es el usuario con más reviews, agrupa por 'user_id'.
-        """
+            INSTRUCCIONES CRÍTICAS:
+            - Si el usuario pregunta por 'usuarios', 'sucursales' o 'comentarios', busca siempre en la tabla 'reviews'.
+            - La tabla 'reviews' es la única fuente de datos. No intentes buscar en tablas como 'users' o 'branches'.
+            - La columna 'comment' contiene lenguaje natural; usa LIKE o filtros de texto cuando sea útil para búsquedas textuales.
+            - Antes de afirmar que algo es 'el que más', 'el único', 'el mejor', 'el peor', o cualquier superlativo, verifica si hay empates.
+            - No respondas con falsa certeza si varias entidades comparten el mismo valor máximo o mínimo.
+            - Si hay empate en el primer lugar, indícalo explícitamente.
+            - Si todos los valores relevantes son iguales, indícalo explícitamente.
+            - Evita usar `ORDER BY ... LIMIT 1` por sí solo cuando la pregunta implique liderazgo, ranking o máximos, porque puede ocultar empates.
+            - Para preguntas como 'quién es el usuario con más reviews', primero calcula el conteo por `user_id` y luego verifica cuántos usuarios comparten el máximo.
+            - Si el resultado no permite identificar un único ganador, responde diciendo que hay empate o que no existe uno solo.
+            - La respuesta final debe ser fiel a los datos y expresar incertidumbre cuando corresponda.
+
+            GUÍA DE INTERPRETACIÓN:
+            - Si una consulta devuelve una sola fila por uso de `LIMIT 1`, no asumas automáticamente que esa fila representa un único máximo global sin verificar empates.
+            - Si varias filas tienen el mismo conteo máximo, responde con lenguaje como:
+            'Hay un empate entre ...'
+            'No hay un único usuario con más reseñas.'
+            'Todos los usuarios tienen la misma cantidad de reseñas.'
+            - Si todos los usuarios tienen exactamente 1 reseña, no digas 'el usuario con más reseñas es X'; di que no hay un único usuario con más reseñas porque todos tienen 1.
+
+            PATRONES RECOMENDADOS:
+            - Para máximos con posible empate, prefiere consultas del tipo:
+            WITH counts AS (
+                SELECT user_id, COUNT(*) AS review_count
+                FROM reviews
+                GROUP BY user_id
+            )
+            SELECT user_id, review_count
+            FROM counts
+            WHERE review_count = (SELECT MAX(review_count) FROM counts);
+
+            - Para mínimos con posible empate, usa la misma lógica con MIN(...).
+
+            """
 
         # Crear el agente de SQL con instrucciones extra
         self.agent_executor = create_sql_agent(

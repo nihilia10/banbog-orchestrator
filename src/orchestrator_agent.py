@@ -34,6 +34,12 @@ def create_orchestrator():
         next_agent = config.get("next_agent", "rag")
         source_tag = config.get("source_tag")
 
+        if source_tag == "clarify":
+            return (
+                "Lo siento, no tengo suficiente información o tu pregunta es muy ambigua. "
+                "¿Podrías ser más específico? Por ejemplo, ¿te refieres a productos, reseñas de clientes o documentación técnica de BRE-B?"
+            )
+
         if next_agent == "sql":
             print(f">>> Usando SQLAgent para fuente: {source_tag}")
             return sql_agent.query(config)
@@ -57,7 +63,8 @@ def main():
     test_questions = [
         # "¿Cuáles son los beneficios de la tarjeta de crédito?",
         "¿Quién es el usuario que más reseñas ha realizado en el banco?",
-        "¿Qué dicen los clientes sobre las demoras en las oficinas?"
+        "¿Qué dicen los clientes sobre las demoras en las oficinas?",
+        "hola que haces?"
     ]
 
     print("\n" + "="*80)

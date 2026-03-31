@@ -1,9 +1,13 @@
 import os
+from dotenv import load_dotenv
 import json
 import pandas as pd
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
+
+
+load_dotenv()
 
 def build_faiss_and_sample():
     csv_file = "vector_dataset.csv"

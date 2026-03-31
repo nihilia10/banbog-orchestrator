@@ -110,3 +110,577 @@ Prompt Tokens: 986
 Completion Tokens: 22
 Total Cost (USD): $0.000107
 
+--- ROUTER AGENT ---
+Question: hay mejores reseñas sobre bogotá? o sobre medellin...
+Total Tokens: 343
+Prompt Tokens: 272
+Completion Tokens: 71
+Total Cost (USD): $0.000056
+
+--- RAG AGENT (reviews) ---
+Question: hay mejores reseñas sobre bogotá? o sobre medellin...
+Total Tokens: 205
+Prompt Tokens: 158
+Completion Tokens: 47
+Total Cost (USD): $0.000035
+
+--- ROUTER AGENT ---
+Question: qué dicen sobre medellin?...
+Total Tokens: 333
+Prompt Tokens: 266
+Completion Tokens: 67
+Total Cost (USD): $0.000053
+
+--- RAG AGENT (reviews) ---
+Question: qué dicen sobre medellin?...
+Total Tokens: 1121
+Prompt Tokens: 1088
+Completion Tokens: 33
+Total Cost (USD): $0.000122
+
+--- ROUTER AGENT ---
+Question: cuántas sucursales hay en bogotá?...
+Total Tokens: 352
+Prompt Tokens: 270
+Completion Tokens: 82
+Total Cost (USD): $0.000060
+
+--- RAG AGENT (products) ---
+Question: cuántas sucursales hay en bogotá?...
+Total Tokens: 288
+Prompt Tokens: 269
+Completion Tokens: 19
+Total Cost (USD): $0.000035
+
+--- ROUTER AGENT ---
+Question: breb tiene algun costo?...
+Total Tokens: 338
+Prompt Tokens: 265
+Completion Tokens: 73
+Total Cost (USD): $0.000056
+
+--- RAG AGENT (bre-b) ---
+Question: breb tiene algun costo?...
+Total Tokens: 1056
+Prompt Tokens: 996
+Completion Tokens: 60
+Total Cost (USD): $0.000124
+
+--- ROUTER AGENT ---
+Question: cuál es la sucursal con más reseñas?...
+Total Tokens: 362
+Prompt Tokens: 269
+Completion Tokens: 93
+Total Cost (USD): $0.000064
+
+--- SQL AGENT ---
+Question: cuál es la sucursal con más reseñas?...
+Total Tokens: 2769
+Prompt Tokens: 2642
+Completion Tokens: 127
+Total Cost (USD): $0.001260
+
+--- ROUTER AGENT ---
+Question: Hola Mi Llave, qué puedes hacer tú?...
+Total Tokens: 340
+Prompt Tokens: 269
+Completion Tokens: 71
+Total Cost (USD): $0.000055
+
+--- RAG AGENT (reviews) ---
+Question: Hola Mi Llave, qué puedes hacer tú?...
+Total Tokens: 865
+Prompt Tokens: 833
+Completion Tokens: 32
+Total Cost (USD): $0.000096
+
+--- ROUTER AGENT ---
+Question: cuántas sucursales hay en medellin?...
+Total Tokens: 355
+Prompt Tokens: 271
+Completion Tokens: 84
+Total Cost (USD): $0.000061
+
+--- RAG AGENT (products) ---
+Question: cuántas sucursales hay en medellin?...
+Total Tokens: 151
+Prompt Tokens: 131
+Completion Tokens: 20
+Total Cost (USD): $0.000021
+
+--- RAG AGENT (products) ---
+Question: cuántas sucursales hay en medellin?...
+Total Tokens: 151
+Prompt Tokens: 131
+Completion Tokens: 20
+Total Cost (USD): $0.000021
+
+--- ROUTER AGENT ---
+Question: cuantas sucursales hay en medellin?...
+Total Tokens: 923
+Prompt Tokens: 888
+Completion Tokens: 35
+Total Cost (USD): $0.000103
+
+--- ROUTER AGENT ---
+Question: mi llave, cuál es la sucursal que tiene más reseña...
+Total Tokens: 929
+Prompt Tokens: 891
+Completion Tokens: 38
+Total Cost (USD): $0.000104
+
+--- SQL AGENT ---
+Question: mi llave, cuál es la sucursal que tiene más reseña...
+Total Tokens: 1677
+Prompt Tokens: 1593
+Completion Tokens: 84
+Total Cost (USD): $0.000772
+
+--- ROUTER AGENT ---
+Question: cuál es el usuario con más reseñas?...
+Total Tokens: 924
+Prompt Tokens: 886
+Completion Tokens: 38
+Total Cost (USD): $0.000104
+
+--- SQL AGENT ---
+Question: cuál es el usuario con más reseñas?...
+Total Tokens: 2756
+Prompt Tokens: 2636
+Completion Tokens: 120
+Total Cost (USD): $0.001246
+
+--- ROUTER AGENT ---
+Question: qué ciudad tiene la mayor cantidad de sucursales?...
+Total Tokens: 927
+Prompt Tokens: 888
+Completion Tokens: 39
+Total Cost (USD): $0.000104
+
+--- SQL AGENT ---
+Question: qué ciudad tiene la mayor cantidad de sucursales?...
+Total Tokens: 2596
+Prompt Tokens: 2467
+Completion Tokens: 129
+Total Cost (USD): $0.000848
+
+--- ROUTER AGENT ---
+Question: quié piensan de las sucursales de cali?...
+Total Tokens: 924
+Prompt Tokens: 890
+Completion Tokens: 34
+Total Cost (USD): $0.000103
+
+--- RAG AGENT (reviews) ---
+Question: quié piensan de las sucursales de cali?...
+Total Tokens: 428
+Prompt Tokens: 380
+Completion Tokens: 48
+Total Cost (USD): $0.000057
+
+--- ROUTER AGENT ---
+Question: cuál es el usuario con más reseñas?...
+Total Tokens: 919
+Prompt Tokens: 886
+Completion Tokens: 33
+Total Cost (USD): $0.000102
+
+--- SQL AGENT ---
+Question: cuál es el usuario con más reseñas?...
+Total Tokens: 2811
+Prompt Tokens: 2719
+Completion Tokens: 92
+Total Cost (USD): $0.000889
+
+--- ROUTER AGENT ---
+Question: qué es una llave en breb?...
+Total Tokens: 915
+Prompt Tokens: 885
+Completion Tokens: 30
+Total Cost (USD): $0.000101
+
+--- RAG AGENT (bre-b) ---
+Question: qué es una llave en breb?...
+Total Tokens: 977
+Prompt Tokens: 961
+Completion Tokens: 16
+Total Cost (USD): $0.000103
+
+--- RAG AGENT (bre-b) ---
+Question: ¿Qué es una llave en breb?...
+Total Tokens: 1115
+Prompt Tokens: 1059
+Completion Tokens: 56
+Total Cost (USD): $0.000128
+
+--- RAG AGENT (bre-b) ---
+Question: ¿Qué es una llave en breb?...
+Total Tokens: 1115
+Prompt Tokens: 1059
+Completion Tokens: 56
+Total Cost (USD): $0.000128
+
+--- ROUTER AGENT ---
+Question: qué es una llave en breb?...
+Total Tokens: 915
+Prompt Tokens: 885
+Completion Tokens: 30
+Total Cost (USD): $0.000101
+
+--- RAG AGENT (bre-b) ---
+Question: qué es una llave en breb?...
+Total Tokens: 993
+Prompt Tokens: 961
+Completion Tokens: 32
+Total Cost (USD): $0.000109
+
+--- ROUTER AGENT ---
+Question: cuál es la diferencia entre llave y alias?...
+Total Tokens: 917
+Prompt Tokens: 886
+Completion Tokens: 31
+Total Cost (USD): $0.000101
+
+--- RAG AGENT (bre-b) ---
+Question: cuál es la diferencia entre llave y alias?...
+Total Tokens: 885
+Prompt Tokens: 808
+Completion Tokens: 77
+Total Cost (USD): $0.000112
+
+--- ROUTER AGENT ---
+Question: qué producto me recomiendas si quiero comprar una ...
+Total Tokens: 918
+Prompt Tokens: 889
+Completion Tokens: 29
+Total Cost (USD): $0.000101
+
+--- RAG AGENT (products) ---
+Question: qué producto me recomiendas si quiero comprar una ...
+Total Tokens: 812
+Prompt Tokens: 760
+Completion Tokens: 52
+Total Cost (USD): $0.000097
+
+--- ROUTER AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 928
+Prompt Tokens: 895
+Completion Tokens: 33
+Total Cost (USD): $0.000103
+
+--- RAG AGENT (reviews) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 152
+Prompt Tokens: 137
+Completion Tokens: 15
+Total Cost (USD): $0.000020
+
+--- ROUTER AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 931
+Prompt Tokens: 898
+Completion Tokens: 33
+Total Cost (USD): $0.000103
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1040
+Prompt Tokens: 1023
+Completion Tokens: 17
+Total Cost (USD): $0.000109
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 998
+Prompt Tokens: 976
+Completion Tokens: 22
+Total Cost (USD): $0.000106
+
+--- ROUTER AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 929
+Prompt Tokens: 895
+Completion Tokens: 34
+Total Cost (USD): $0.000103
+
+--- RAG AGENT (reviews) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 152
+Prompt Tokens: 137
+Completion Tokens: 15
+Total Cost (USD): $0.000020
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 998
+Prompt Tokens: 976
+Completion Tokens: 22
+Total Cost (USD): $0.000106
+
+--- RAG AGENT (None) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 998
+Prompt Tokens: 976
+Completion Tokens: 22
+Total Cost (USD): $0.000106
+
+--- ROUTER AGENT ---
+Question: cuantas sucursales hay en medellin?...
+Total Tokens: 1068
+Prompt Tokens: 1033
+Completion Tokens: 35
+Total Cost (USD): $0.000117
+
+--- ROUTER AGENT ---
+Question: cuantas sucursales hay en medellin?...
+Total Tokens: 1068
+Prompt Tokens: 1033
+Completion Tokens: 35
+Total Cost (USD): $0.000117
+
+--- ROUTER AGENT ---
+Question: hola que haces?...
+Total Tokens: 1059
+Prompt Tokens: 1026
+Completion Tokens: 33
+Total Cost (USD): $0.000116
+
+--- ROUTER AGENT ---
+Question: cuantas  sucursales hay en Barranquilla'...
+Total Tokens: 1069
+Prompt Tokens: 1034
+Completion Tokens: 35
+Total Cost (USD): $0.000117
+
+--- SQL AGENT ---
+Question: cuantas  sucursales hay en Barranquilla'...
+Total Tokens: 2511
+Prompt Tokens: 2422
+Completion Tokens: 89
+Total Cost (USD): $0.000766
+
+--- ROUTER AGENT ---
+Question: y si buscas por BAR?...
+Total Tokens: 1070
+Prompt Tokens: 1028
+Completion Tokens: 42
+Total Cost (USD): $0.000120
+
+--- ROUTER AGENT ---
+Question: cuantas  sucursales hay en Barranquilla (BAR)...
+Total Tokens: 1071
+Prompt Tokens: 1036
+Completion Tokens: 35
+Total Cost (USD): $0.000118
+
+--- SQL AGENT ---
+Question: cuantas  sucursales hay en Barranquilla (BAR)...
+Total Tokens: 2483
+Prompt Tokens: 2423
+Completion Tokens: 60
+Total Cost (USD): $0.000720
+
+--- ROUTER AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1081
+Prompt Tokens: 1040
+Completion Tokens: 41
+Total Cost (USD): $0.000120
+
+--- SQL AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 2543
+Prompt Tokens: 2432
+Completion Tokens: 111
+Total Cost (USD): $0.001150
+
+--- ROUTER AGENT ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1080
+Prompt Tokens: 1043
+Completion Tokens: 37
+Total Cost (USD): $0.000119
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1040
+Prompt Tokens: 1023
+Completion Tokens: 17
+Total Cost (USD): $0.000109
+
+--- RAG AGENT (None) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1000
+Prompt Tokens: 976
+Completion Tokens: 24
+Total Cost (USD): $0.000107
+
+--- RAG AGENT (None) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 998
+Prompt Tokens: 976
+Completion Tokens: 22
+Total Cost (USD): $0.000106
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 998
+Prompt Tokens: 976
+Completion Tokens: 22
+Total Cost (USD): $0.000106
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1040
+Prompt Tokens: 1023
+Completion Tokens: 17
+Total Cost (USD): $0.000109
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1040
+Prompt Tokens: 1023
+Completion Tokens: 17
+Total Cost (USD): $0.000109
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 994
+Prompt Tokens: 976
+Completion Tokens: 18
+Total Cost (USD): $0.000105
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 991
+Prompt Tokens: 967
+Completion Tokens: 24
+Total Cost (USD): $0.000106
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1116
+Prompt Tokens: 1099
+Completion Tokens: 17
+Total Cost (USD): $0.000117
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1382
+Prompt Tokens: 1350
+Completion Tokens: 32
+Total Cost (USD): $0.000148
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 2069
+Prompt Tokens: 2033
+Completion Tokens: 36
+Total Cost (USD): $0.000131
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 1914
+Prompt Tokens: 1853
+Completion Tokens: 61
+Total Cost (USD): $0.000210
+
+--- RAG AGENT (bre-b) ---
+Question: Se demora al menos un poco transfiriendo el dinero...
+Total Tokens: 2032
+Prompt Tokens: 1995
+Completion Tokens: 37
+Total Cost (USD): $0.000214
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 1968
+Prompt Tokens: 1949
+Completion Tokens: 19
+Total Cost (USD): $0.000203
+
+--- ROUTER AGENT ---
+Question: cuánto ddemora una transacción en breb?...
+Total Tokens: 1073
+Prompt Tokens: 1033
+Completion Tokens: 40
+Total Cost (USD): $0.000119
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto ddemora una transacción en breb?...
+Total Tokens: 2010
+Prompt Tokens: 1990
+Completion Tokens: 20
+Total Cost (USD): $0.000207
+
+--- ROUTER AGENT ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 1061
+Prompt Tokens: 1030
+Completion Tokens: 31
+Total Cost (USD): $0.000115
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 1967
+Prompt Tokens: 1949
+Completion Tokens: 18
+Total Cost (USD): $0.000068
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 384
+Prompt Tokens: 365
+Completion Tokens: 19
+Total Cost (USD): $0.000044
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transacción en breb?...
+Total Tokens: 427
+Prompt Tokens: 407
+Completion Tokens: 20
+Total Cost (USD): $0.000049
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 384
+Prompt Tokens: 365
+Completion Tokens: 19
+Total Cost (USD): $0.000044
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transferencia en breb?...
+Total Tokens: 284
+Prompt Tokens: 265
+Completion Tokens: 19
+Total Cost (USD): $0.000034
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transacción en breb?...
+Total Tokens: 322
+Prompt Tokens: 302
+Completion Tokens: 20
+Total Cost (USD): $0.000038
+
+--- RAG AGENT (bre-b) ---
+Question: cuánto demora una transacción en breb?...
+Total Tokens: 1047
+Prompt Tokens: 1027
+Completion Tokens: 20
+Total Cost (USD): $0.000111
+
+--- ROUTER AGENT ---
+Question: ¿Qué beneficios tiene la tarjeta de crédito?...
+Total Tokens: 1066
+Prompt Tokens: 1031
+Completion Tokens: 35
+Total Cost (USD): $0.000117
+
+--- RAG AGENT (products) ---
+Question: ¿Qué beneficios tiene la tarjeta de crédito?...
+Total Tokens: 918
+Prompt Tokens: 856
+Completion Tokens: 62
+Total Cost (USD): $0.000110
+

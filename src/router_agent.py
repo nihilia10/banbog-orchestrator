@@ -11,6 +11,7 @@ Fuentes disponibles:
 """
 
 import os
+from dotenv import load_dotenv
 from typing import Optional, Dict, Any
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -18,21 +19,23 @@ from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 from langchain_community.callbacks import get_openai_callback
 
+load_dotenv()
 # ---------------------------------------------------------------------------
 # Fuentes de datos y sus descripciones
 # ---------------------------------------------------------------------------
 SOURCES = {
     "products": "Información sobre productos bancarios, beneficios de tarjetas, tipos de cuentas y servicios generales del banco.",
     "reviews": "Feedback de clientes, opiniones sobre el servicio, quejas y comentarios sobre la experiencia del usuario.",
-    "bre-b": "Especificaciones técnicas, arquitectura de software, diagramas, componentes y reglas de negocio del sistema BRE-B."
+    "bre-b": "Especificaciones técnicas, arquitectura de software, diagramas, componentes y reglas de negocio del sistema BRE-B.",
+    "clarify": "Se usa cuando la pregunta es ambigua, insuficiente, fuera de contexto o no se puede decidir con confianza a qué base de datos mandarla."
 }
 
 # ---------------------------------------------------------------------------
 # Estructura de salida del Router
 # ---------------------------------------------------------------------------
 class RouterDecision(BaseModel):
-    source_tag: str = Field(description="El tag de la fuente de datos elegida (products, reviews o bre-b)")
-    next_agent: str = Field(description="El agente que procesará la consulta: 'sql' (para datos estructurados/específicos) o 'rag' (para conceptual/sentimiento/totality)")
+    source_tag: str = Field(description="El tag de la fuente de datos elegida (products, reviews, bre-b o clarify)")
+    next_agent: str = Field(description="El agente que procesará la consulta: 'sql' (solo para reviews estructurado), 'rag' (para conceptual) o 'none' (solo si source_tag es clarify)")
     reasoning: str = Field(description="Explicación breve de por qué se eligió esta fuente y estrategia")
 
 # ---------------------------------------------------------------------------
@@ -55,18 +58,59 @@ class RouterAgent:
         
         self.prompt = ChatPromptTemplate.from_messages([
             ("system", (
-                "Eres un asistente de banca experto en enrutamiento de consultas. "
-                "Tu objetivo es identificar cuál de las siguientes fuentes de datos es la mejor para responder la pregunta del usuario:\n\n"
-                "{sources_description}\n\n"
-                "Instrucciones:\n"
-                "1. Analiza el contenido de la pregunta.\n"
-                "2. Selecciona el 'source_tag' más relevante.\n"
-                "3. Para reviews, decide el 'next_agent':\n"
-                "   - 'sql': Si la pregunta requiere buscar datos específicos (contar registros, buscar un usuario, sucursal, datos exactos en la tabla).\n"
-                "   - 'rag': Si la pregunta es conceptual, trata sobre la totalidad de los datos, pide opiniones generales o resúmenes de sentimientos.\n"
-                "4. Para otras fuentes ('products', 'bre-b'), usa siempre 'rag'.\n"
-                "5. Responde estrictamente en formato JSON con los campos 'source_tag', 'next_agent' y 'reasoning'.\n"
-            )),
+                    "Eres un asistente experto en enrutamiento de consultas para un sistema con tres fuentes: "
+                    "'products', 'reviews' y 'bre-b'. "
+                    "Tu tarea es decidir cuál fuente usar ('source_tag') y cuál agente debe continuar ('next_agent').\n\n"
+
+                    "Fuentes disponibles:\n"
+                    "{sources_description}\n\n"
+
+                    "Reglas generales:\n"
+                    "1. Analiza cuidadosamente la intención de la pregunta.\n"
+                    "2. Selecciona el 'source_tag' más relevante.\n"
+                    "3. El agente 'sql' SOLO puede usarse con la fuente 'reviews'.\n"
+                    "4. Para 'products' y 'bre-b', usa SIEMPRE 'rag'.\n\n"
+
+                    "Reglas específicas para 'reviews':\n"
+                    "- Usa 'sql' si la pregunta requiere datos exactos, estructurados o agregados provenientes de la base de reseñas.\n"
+                    "- Esto incluye preguntas sobre conteos, cantidades, rankings, existencia de registros, filtros por ciudad, sucursal, usuario, fecha, o búsquedas exactas.\n"
+                    "- También incluye preguntas sobre entidades estructuradas presentes en reviews, aunque el usuario no mencione la palabra 'reseña' explícitamente, por ejemplo: sucursal, sede, ciudad, cantidad de opiniones, número de casos, top sucursales, etc.\n"
+                    "- Usa 'rag' si la pregunta pide resumen, sentimiento, opinión general, temas frecuentes, conclusiones, explicación o síntesis de reseñas.\n\n"
+
+                    "Heurísticas fuertes:\n"
+                    "- Si la pregunta empieza con 'cuántos', 'cuántas', 'cuál es el número de', 'cuáles son', 'lista', 'dame', 'muéstrame', 'top', 'promedio', 'máximo', 'mínimo', 'existe', normalmente corresponde a 'sql' SI la fuente correcta es 'reviews'.\n"
+                    "- Si la pregunta pide 'resumir', 'explicar', 'qué opinan', 'qué dicen', 'sentimiento', 'temas comunes', normalmente corresponde a 'rag'.\n"
+                    "- No elijas 'products' solo porque aparezca una entidad de negocio como 'sucursal' o 'ciudad'. Si la intención es contar, filtrar o consultar registros estructurados y eso puede provenir de reviews, elige 'reviews' + 'sql'.\n\n"
+
+                    "Ejemplos:\n"
+                    "- '¿Cuántas sucursales hay en Medellín?' => "
+                    "{{\"source_tag\": \"reviews\", \"next_agent\": \"sql\", \"reasoning\": \"Pregunta de conteo exacto por ciudad sobre datos estructurados de reviews.\"}}\n"
+                    "- '¿Qué opinan los usuarios de las sucursales de Medellín?' => "
+                    "{{\"source_tag\": \"reviews\", \"next_agent\": \"rag\", \"reasoning\": \"Pide resumen/opiniones generales de reseñas.\"}}\n"
+                    "- '¿Cuál sucursal tiene más reseñas negativas?' => "
+                    "{{\"source_tag\": \"reviews\", \"next_agent\": \"sql\", \"reasoning\": \"Requiere agregación/ranking exacto sobre la base de reviews.\"}}\n"
+                    "- 'Resume el sentimiento de los clientes sobre la atención en Bogotá' => "
+                    "{{\"source_tag\": \"reviews\", \"next_agent\": \"rag\", \"reasoning\": \"Pide síntesis semántica y sentimiento general.\"}}\n"
+                    "- '¿Qué productos ofrecen para ahorro?' => "
+                    "{{\"source_tag\": \"products\", \"next_agent\": \"rag\", \"reasoning\": \"Consulta descriptiva sobre documentos de productos.\"}}\n"
+                    "- '¿Qué es BRE-B?' => "
+                    "{{\"source_tag\": \"bre-b\", \"next_agent\": \"rag\", \"reasoning\": \"Consulta conceptual sobre documentos PDF.\"}}\n\n"
+
+                    "Reglas de 'clarify':\n"
+                    "1. Si la pregunta es demasiado vaga (ej: 'hola', 'ayuda', 'qué hago?').\n"
+                    "2. Si la pregunta no tiene suficiente contexto para decidir entre las fuentes disponibles.\n"
+                    "3. Si la pregunta no tiene NADA que ver con el banco o los temas disponibles.\n"
+                    "4. En estos casos, usa 'source_tag': 'clarify' y 'next_agent': 'none'.\n\n"
+
+                    "Salida obligatoria:\n"
+                    "- Responde únicamente en JSON válido.\n"
+                    "- Usa exactamente estas claves: 'source_tag', 'next_agent', 'reasoning'.\n"
+                    "- 'next_agent' solo puede ser 'rag', 'sql' o 'none'.\n"
+                    "- Si 'source_tag' es 'products' o 'bre-b', entonces 'next_agent' debe ser 'rag'.\n"
+                    "- Si 'source_tag' es 'clarify', entonces 'next_agent' debe ser 'none'.\n"
+                    "- El campo 'reasoning' debe ser breve y concreto."
+                )
+            ),
             ("user", "Pregunta: {question}")
         ]).partial(sources_description=sources_desc)
         
@@ -145,7 +189,8 @@ if __name__ == "__main__":
         # "Qué dicen las reseñas sobre el tiempo de espera?",
         #"Cuántos usuarios han dejado reseñas?",
         #""
-        "Teniendo en cuenta la tecnología de Bre-b a qué sucursal del banco me recomiendas ir?"
+        "cuantas sucursales hay en medellin?",
+        "hola que haces?"
     ]
     
     print("\n--- PRUEBAS DEL ROUTER AGENT ---\n")

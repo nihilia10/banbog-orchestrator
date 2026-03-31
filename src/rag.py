@@ -37,7 +37,9 @@ SIMILARITY_THRESHOLD = 0.40  # 80% similarity threshold (1 / (1 + L2_score))
 SYSTEM_PROMPT = """Eres un asistente bancario experto con acceso a documentos internos del banco.
 Responde la pregunta del usuario de forma precisa y concisa utilizando ÚNICAMENTE el contexto proporcionado.
 Si el contexto no contiene suficiente información para responder, dilo claramente.
-No inventes información. Responde en el mismo idioma de la pregunta del usuario."""
+No inventes información. Responde en el mismo idioma de la pregunta del usuario.
+NO puedes realizar transacciones tu labor es puramente informativa.
+"""
 
 RAG_PROMPT_TEMPLATE = """
 Contexto (recuperado de documentos internos):
@@ -103,15 +105,15 @@ class RAGAgent:
 
         # FAISS returns L2 distance
         raw_results = self._vectorstore.similarity_search_with_score(query, **search_kwargs)
-
-        results = []
-        for doc, l2_score in raw_results:
-            similarity = 1.0 / (1.0 + l2_score)
-            if similarity >= self.threshold:
-                results.append((doc, similarity))
+        #print(raw_results)
+        results = raw_results
+        # for doc, l2_score in raw_results:
+        #     similarity = 1.0 / (1.0 + l2_score)
+        #     if similarity >= self.threshold:
+        #         results.append((doc, similarity))
         
         if not results:
-            return "No se encontró información relevante en los documentos internos."
+            return "No se encontró información relevante en los documentos internos. Por favor reformula tu pregunta"
 
         return self._format_context(results)
 
@@ -129,12 +131,13 @@ class RAGAgent:
         Runs the full RAG pipeline using a config dictionary.
         This signature is compatible with LCEL's dictated output from a previous step.
         """
+        #print("config", config)
         question = config.get("question", "")
         source_tag = config.get("source_tag")
         k = config.get("k", DEFAULT_K)
         
         # 1. Retrieve & Augment
-        context = self._retrieve(question, k=k, source_tag=source_tag)
+        context = self._retrieve(question, k=k, source_tag=source_tag, )
 
         # 2. Generate
         prompt = RAG_PROMPT_TEMPLATE.format(context=context, question=question)
@@ -164,8 +167,8 @@ if __name__ == "__main__":
     agent = RAGAgent()
     
     test_config = {
-        "question": "¿Qué beneficios tiene la tarjeta de crédito?",
-        "source_tag": "products"
+        "question": "cuánto demora una transacción en breb?",
+        "source_tag": "bre-b"
     }
     print(f"Pregunta: {test_config['question']}")
     answer = agent.query(test_config)

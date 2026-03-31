@@ -2,6 +2,10 @@ import pandas as pd
 import json
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+try:
+    from src.report_data_balance import report_data_balance
+except (ImportError, ModuleNotFoundError):
+    from report_data_balance import report_data_balance
 
 def process_documents():
     data = []
@@ -26,7 +30,17 @@ def process_documents():
         df_reviews = pd.read_excel("bank_reviews_colombia (1).xlsx")
         for index, row in df_reviews.iterrows():
             # Converting the entire row into a text string
-            row_text = " | ".join([f"{col}: {val}" for col, val in row.items() if pd.notna(val)])
+            def process_column(col, val):
+                if col == "branch_id":
+                    split_text = val.split("-")
+                    city = split_text[0]
+                    neighborhood = split_text[1]
+                    sub_id = split_text[2]
+                    return f"City: {city}, Neighborhood: {neighborhood}, ID: {sub_id}"
+                else:
+                    return val
+                
+            row_text = " | ".join([f"{col}: {process_column(col, val)}" for col, val in row.items() if pd.notna(val)])
             data.append({
                 "text": row_text,
                 "source_tag": "reviews",
@@ -45,8 +59,8 @@ def process_documents():
     
     # Safe text chunking with ~1000 characters and ~200 overlap
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
+        chunk_size=800,
+        chunk_overlap=100,
         separators=["\n\n", "\n", ".", " ", ""]
     )
     chunks_breb = text_splitter.split_documents(docs_breb)
@@ -69,3 +83,5 @@ def process_documents():
 
 if __name__ == "__main__":
     process_documents()
+    report_data_balance()
+

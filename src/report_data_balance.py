@@ -1,7 +1,7 @@
 import pandas as pd
 import tiktoken
 
-def generate_report():
+def report_data_balance():
     csv_file = "vector_dataset.csv"
     try:
         df = pd.read_csv(csv_file)
@@ -51,4 +51,4 @@ def generate_report():
     print("="*60 + "\n")
 
 if __name__ == "__main__":
-    generate_report()
+    report_data_balance()
